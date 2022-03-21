@@ -1,0 +1,117 @@
+{
+  "stickyHeader": true,
+  "categories": [
+    {
+      "name": "1st Column",
+      "btnText": "Get Started",
+      "btnLink": "/first",
+      "btnModel": "",
+      "btnTheme": "",
+      "btnTracking": "",
+      "btnClasses": "",
+      "btnAttributes": ""
+    },
+    {
+      "name": "2nd Column",
+      "btnText": "Get Started",
+      "btnLink": "/second",
+      "btnModel": "",
+      "btnTheme": "",
+      "btnTracking": "",
+      "btnClasses": "",
+      "btnAttributes": ""
+    },
+    {
+      "name": "3rd Column",
+      "btnText": "Get Started",
+      "btnLink": "/third",
+      "btnModel": "",
+      "btnTheme": "",
+      "btnTracking": "",
+      "btnClasses": "",
+      "btnAttributes": ""
+    }
+  ],
+  "rows": [
+    {
+      "rowClass": "",
+      "categories": [
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 1",
+          "description": "Content 1"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 1",
+          "description": "Content 2"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 1",
+          "description": "Content 3"
+        }
+      ]
+    },
+    {
+      "rowClass": "",
+      "categories": [
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 2",
+          "description": "Content 1"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 2",
+          "description": "Content 2"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 2",
+          "description": "Content 3"
+        }
+      ]
+    },
+    {
+      "rowClass": "",
+      "categories": [
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 3",
+          "description": "Content 1"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 3",
+          "description": "Content 2"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 3",
+          "description": "Content 3"
+        }
+      ]
+    },
+    {
+      "rowClass": "",
+      "categories": [
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 4",
+          "description": "Content 1"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 4",
+          "description": "Content 2"
+        },
+        {
+          "image": "https://picsum.photos/36",
+          "title": "Row 4",
+          "description": "Content 3"
+        }
+      ]
+    }
+  ]
+}

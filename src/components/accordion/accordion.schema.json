@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "key": "accordion",
+  "title": "Accordion",
+  "description": "Accordion component: a collection of items with title and details.",
+  "type": "object",
+  "properties": {
+    "isFAQ": {
+      "title": "Is this an FAQ accordion?",
+      "description": "Adds SEO markup if this is an FAQ list.",
+      "type": "boolean",
+      "format": "checkbox",
+      "default": false
+    },
+    "headerIndex": {
+      "title": "Header level",
+      "description": "What is the header level for these titles? (h1 - h6, h2 default)",
+      "type": "number",
+      "format": "number",
+      "default": 2
+    },
+    "headerSize": {
+      "title": "Header size",
+      "description": "Choose a header size: large (highlight-2), small (subtitle-1)",
+      "type": "string",
+      "enum": [
+        "small",
+        "large"
+      ],
+      "default": "small"
+    },
+    "icon": {
+      "title": "Icon type",
+      "description": "Choose the icon type to display. Using 'tabs' switches to side tab design. Using 'number-tabs' switches to side tab design with numbered headings.",
+      "type": "string",
+      "enum": [
+        "chevron",
+        "plus",
+        "accordion-tabs",
+        "accordion-number-tabs"
+      ],
+      "default": "chevron"
+    },
+    "openFirst": {
+      "title": "Open first item",
+      "description": "Automatically open first item in the list?",
+      "type": "boolean",
+      "format": "checkbox",
+      "default": false
+    },
+    "list": {
+      "title": "Item list",
+      "description": "Define the items to place in the accordion.",
+      "type": "array",
+      "items": {
+        "title": "Item",
+        "type": "object",
+        "properties": {
+          "title": {
+            "title": "Item title",
+            "description": "Plain text title.",
+            "type": "string",
+            "format": "text"
+          },
+          "subCopy": {
+            "title": "Sub-copy",
+            "description": "Additional message to show with the title. (plain text)",
+            "type": "string",
+            "format": "markdown"
+          },
+          "content": {
+            "title": "Item details",
+            "description": "HTML formatted details.",
+            "type": "string",
+            "format": "markdown"
+          },
+          "tracking": {
+            "title": "Tracking label",
+            "type": "string",
+            "format": "text"
+          },
+          "customClasses": {
+            "title": "Custom classes",
+            "type": "string",
+            "format": "text"
+          },
+          "additionalAttributes": {
+            "title": "Additional attributes",
+            "type": "string",
+            "format": "text",
+            "options": {
+              "hidden": true
+            }
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ]
+      },
+      "default": [
+        {}
+      ]
+    }
+  },
+  "required": [
+    "list"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "openFirst": true,
+  "headingSize": "large",
+  "list": [
+    {
+      "title": "title one",
+      "subCopy": "",
+      "content": "content one",
+      "tracking": "",
+      "customClasses": "",
+      "additionalAttributes": ""
+    },
+    {
+      "title": "title two",
+      "subCopy": "",
+      "content": "content two",
+      "tracking": "",
+      "customClasses": "",
+      "additionalAttributes": ""
+    },
+    {
+      "title": "title three",
+      "subCopy": "",
+      "content": "content three",
+      "tracking": "",
+      "customClasses": "",
+      "additionalAttributes": ""
+    }
+  ]
+}

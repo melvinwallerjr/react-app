@@ -1,0 +1,33 @@
+// Base
+$font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-monospace: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+
+$text-color: #222;
+$text-inverse: #eee;
+
+$body-color: #fff;
+$body-inverse: #222;
+
+// Header
+$header-body: #282c34;
+$header-link: #61dafb;
+$header-hover: #fefefe;
+
+// Color
+$color-accent: #00eac3;
+$color-muted: #545a64;
+$color-rule: #c6ccd5;
+
+// z-index
+$zindex-header: 1000;
+$zindex-sticky: 1010;
+$zindex-modal: 1030;
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

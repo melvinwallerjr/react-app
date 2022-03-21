@@ -1,0 +1,18 @@
+main {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+// layout switch breakpoint, width and height
+// static header and footer for larger than mobile
+@media (min-width: 480px) and (min-height: 480px) {
+  #root {
+    display: flex;
+    flex-direction: column;
+
+    main {
+      flex: 1;
+      overflow: auto;
+    }
+  }
+}

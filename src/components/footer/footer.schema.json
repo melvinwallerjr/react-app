@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "key": "footer",
+  "title": "Footer",
+  "description": "Site Footer component.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "title": "Footer Title",
+      "description": "Tittle on the site footer.",
+      "type": "string",
+      "format": "text"
+    },
+    "list": {
+      "title": "Link List",
+      "type": "array",
+      "items": {
+        "title": "Item",
+        "type": "object",
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string",
+            "format": "text"
+          },
+          "href": {
+            "title": "Link URL",
+            "type": "string",
+            "format": "text"
+          },
+          "tracking": {
+            "title": "Tracking",
+            "type": "string",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

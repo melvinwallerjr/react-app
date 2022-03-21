@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "key": "heading",
+  "title": "Heading",
+  "description": "HTML heading component.",
+  "type": "object",
+  "properties": {
+    "index": {
+      "title": "Heading Index",
+      "description": "HTML heading index.",
+      "type": "string",
+      "format": "number",
+      "default": 2
+    },
+    "image": {
+      "title": "Title",
+      "description": "Title text of the heading.",
+      "type": "string",
+      "format": "text"
+    },
+    "classes": {
+      "title": "CSS Classes",
+      "description": "Override CSS classes.",
+      "type": "string",
+      "format": "text"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "title": "React",
+  "list": [
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "Learn React",
+      "href": "https://reactjs.org/"
+    },
+    {
+      "text": "React Router",
+      "href": "https://v5.reactrouter.com/"
+    }
+  ]
+}

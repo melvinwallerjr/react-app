@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "key": "comparison",
+  "title": "Comparison",
+  "description": "Comparison component: changes to switchable column pairs on mobile",
+  "type": "object",
+  "properties": {
+    "headerIndex": {
+      "title": "Heading index",
+      "description": "What will be the starting heading index? (number: 1-5, default: 2)",
+      "type": "number",
+      "format": "number",
+      "default": 2
+    },
+    "stickyHeader": {
+      "title": "Sticky header",
+      "description": "",
+      "type": "boolean",
+      "format": "checkbox",
+      "default": true
+    },
+    "mobileLabel1": {
+      "title": "Mobile label 1",
+      "description": "Label for mobile column 1 select list to describe the selection type.",
+      "type": "string",
+      "format": "markdown"
+    },
+    "mobileLabel2": {
+      "title": "Mobile label 2",
+      "description": "Label for mobile column 2 select list to describe the selection type.",
+      "type": "string",
+      "format": "markdown"
+    },
+    "categories": {
+      "title": "Categories (column)",
+      "description": "Column categories will only render if there are two to four category column names defined.",
+      "type": "array",
+      "items": {
+        "title": "Category",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Category title",
+            "description": "Displayed category title shown at the top of the column.",
+            "type": "string",
+            "format": "markdown"
+          },
+          "btnText": {
+            "title": "Button text",
+            "description": "Text shown in the button. (Text and URL required to display)",
+            "type": "string",
+            "format": "markdown"
+          },
+          "btnLink": {
+            "title": "Button URL",
+            "description": "URL destination when the button is clicked. (Text and URL required to display)",
+            "type": "string",
+            "format": "text"
+          },
+          "btnModel": {
+            "title": "Button model",
+            "description": "The category buttons can use solid or outline models.",
+            "type": "string",
+            "enum": [
+              "[default]",
+              "outline"
+            ]
+          },
+          "btnTheme": {
+            "title": "Button theme",
+            "description": "Choose a category buttons theme, default black or action blue.",
+            "type": "string",
+            "enum": [
+              "[default]",
+              "action"
+            ]
+          },
+          "btnTracking": {
+            "title": "Button tracking label",
+            "type": "string",
+            "format": "text"
+          },
+          "btnClasses": {
+            "title": "Button classes",
+            "description": "Add additional CSS styling class for the CTA button.",
+            "type": "string",
+            "format": "text",
+            "options": {
+              "hidden": true
+            }
+          },
+          "btnAttributes": {
+            "title": "Button attributes",
+            "description": "Add additional HTML attributes to the CTA button.",
+            "type": "string",
+            "format": "text",
+            "options": {
+              "hidden": true
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "default": [
+        {
+          "btnModel": "[default]"
+        }
+      ]
+    },
+    "rows": {
+      "title": "Data rows",
+      "description": "Data can have zero to many rows.",
+      "type": "array",
+      "items": {
+        "title": "Row",
+        "type": "object",
+        "properties": {
+          "rowClass": {
+            "title": "CSS Row Classes",
+            "description": "[Optional] CSS classes to apply to the row.",
+            "type": "string",
+            "format": "text"
+          },
+          "categories": {
+            "title": "Row categories",
+            "type": "array",
+            "items": {
+              "title": "Row category",
+              "type": "object",
+              "properties": {
+                "image": {
+                  "title": "Icon/image",
+                  "description": "Image/icon for the item cell.",
+                  "type": "string",
+                  "format": "text"
+                },
+                "title": {
+                  "title": "Row title",
+                  "description": "Title for this row. If \"new section\" was selected this title will begin a new sub-group of row items and the remainder of this row data will be ignored.",
+                  "type": "string",
+                  "format": "markdown"
+                },
+                "description": {
+                  "title": "Row description",
+                  "description": "Detailed description about this row item.",
+                  "type": "string",
+                  "format": "markdown"
+                }
+              }
+            }
+          }
+        }
+      },
+      "default": [
+        {
+          "categories": [
+            {
+              "icon": "[none]"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "categories",
+    "rows"
+  ]
+}
