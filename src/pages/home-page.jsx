@@ -5,7 +5,7 @@ function HomePage() {
   const breadcrumbList = [
     {
       text: 'Home',
-      href: '/',
+      href: '/react-app/',
       // tracking: '',
     },
   ];
@@ -21,8 +21,8 @@ function HomePage() {
 
         <Heading level={1}>Components</Heading>
         <ul>
-          <li><GetLink to="/accordion">Accordion</GetLink></li>
-          <li><GetLink to="/comparison">Comparison</GetLink>
+          <li><GetLink to="/react-app/accordion">Accordion</GetLink></li>
+          <li><GetLink to="/react-app/comparison">Comparison</GetLink>
           </li>
         </ul>
       </div>

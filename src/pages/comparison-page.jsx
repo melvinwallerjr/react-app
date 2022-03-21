@@ -8,12 +8,12 @@ function ComparisonPage() {
     list: [
       {
         text: 'Home',
-        href: '/',
+        href: '/react-app/',
         // tracking: '',
       },
       {
         text: 'Comparison',
-        href: '/comparison',
+        href: '/react-app/comparison',
         // tracking: '',
       },
     ],

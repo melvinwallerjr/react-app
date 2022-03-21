@@ -27,9 +27,9 @@ function App() {
       <Header {...headerData} path={path} />
       <main>
         <Routes>
-          <Route path="/" exact element={<HomePage />} />
-          <Route path="/accordion" element={<AccordionPage />} />
-          <Route path="/comparison" element={<ComparisonPage />} />
+          <Route path="/react-app/" exact element={<HomePage />} />
+          <Route path="/react-app/accordion" element={<AccordionPage />} />
+          <Route path="/react-app/comparison" element={<ComparisonPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
