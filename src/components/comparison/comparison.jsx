@@ -1,9 +1,9 @@
 import {useEffect, useRef, useState} from 'react';
 
 import './comparison.scss';
+import {GetLink} from '../';
 import {
   classNames,
-  GetLink,
   htmlToText,
   passiveEvent,
   throttle,

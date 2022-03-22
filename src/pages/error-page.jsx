@@ -5,7 +5,7 @@ function ErrorPage() {
     list: [
       {
         text: 'Home',
-        href: '/react-app/',
+        href: '%PUBLIC_URL%',
         // tracking: '',
       },
     ],

@@ -8,12 +8,12 @@ function AccordionPage() {
     list: [
       {
         text: 'Home',
-        href: '/react-app/',
+        href: '%PUBLIC_URL%',
         // tracking: '',
       },
       {
         text: 'Accordion',
-        href: '/react-app/accordion',
+        href: '%PUBLIC_URL%accordion',
         // tracking: '',
       },
     ],

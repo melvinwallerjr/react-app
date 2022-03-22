@@ -1,4 +1,4 @@
-import {GetLink} from '../../utility';
+import {GetLink} from '../';
 import logo from '../../assets/logo.svg';
 import './header.scss';
 

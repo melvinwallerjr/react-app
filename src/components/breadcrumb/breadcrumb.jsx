@@ -1,4 +1,4 @@
-import {GetLink} from '../../utility';
+import {GetLink} from '../';
 import './breadcrumb.scss';
 
 let breadcrumbSeed = 0;

@@ -1,11 +1,10 @@
-import {Breadcrumb, Heading} from '../components';
-import {GetLink} from '../utility';
+import {Breadcrumb, GetLink, Heading} from '../components';
 
 function HomePage() {
   const breadcrumbList = [
     {
       text: 'Home',
-      href: '/react-app/',
+      href: '%PUBLIC_URL%',
       // tracking: '',
     },
   ];
@@ -21,9 +20,8 @@ function HomePage() {
 
         <Heading level={1}>Components</Heading>
         <ul>
-          <li><GetLink to="/react-app/accordion">Accordion</GetLink></li>
-          <li><GetLink to="/react-app/comparison">Comparison</GetLink>
-          </li>
+          <li><GetLink to="%PUBLIC_URL%accordion">Accordion</GetLink></li>
+          <li><GetLink to="%PUBLIC_URL%comparison">Comparison</GetLink></li>
         </ul>
       </div>
     </>

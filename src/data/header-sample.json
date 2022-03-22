@@ -3,7 +3,7 @@
   "list": [
     {
       "text": "Home",
-      "href": "/react-app/"
+      "href": "%PUBLIC_URL%"
     },
     {
       "text": "Learn React",

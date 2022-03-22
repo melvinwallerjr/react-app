@@ -19,6 +19,11 @@ function GetLink(props) {
     delete link.href;
   }
 
+  // use .env value for project root path
+  if (link.to) {
+    link.to = link.to.replace('%PUBLIC_URL%', process.env.PUBLIC_URL);
+  }
+
   // NavLink: requires path, set current link active for home or other
   if (typeof link.path === 'string') {
     anchorType = 'nav';
