@@ -80,17 +80,16 @@
       display: block;
     }
 
-    &.table-sticky {
+    &.sticky {
       padding-top: 65px;
 
       .table-header {
-        position: fixed;
+        position: sticky;
         z-index: $zindex-sticky;
         left: 0;
         right: 0;
-        top: 0;
+        top: -1em;
         background-color: $body-color;
-        box-shadow: 1px 2px 2px -1px rgba(0, 0, 0, .15), 0 1px 3px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
       }
 
       .table-sm {
@@ -166,14 +165,8 @@
 }
 
 @media (min-width: 768px) {
-  .comparison {
-    &.table-sticky .table-header {
-      padding-right: 1em; // adjust for scrollbar
-    }
-
-    .row .table-hide {
-      display: block;
-    }
+  .comparison .row .table-hide {
+    display: block;
   }
 }
 

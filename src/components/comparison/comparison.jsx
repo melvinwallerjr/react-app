@@ -5,8 +5,6 @@ import {GetLink} from '../';
 import {
   classNames,
   htmlToText,
-  passiveEvent,
-  throttle,
 } from '../../utility';
 
 let comparisonSeed = 0;
@@ -20,34 +18,24 @@ function Comparison({
   const comparisonRef = useRef(null);
   const firstColumnRef = useRef(null);
   const secondColumnRef = useRef(null);
+  const [firstColumnVal, setFirstColumnVal] = useState();
+  const [secondColumnVal, setSecondColumnVal] = useState();
 
   // DOM node pointers
   const [comparison, setComparison] = useState(null);
-  const [firstColumn, setFirstColumn] = useState(null);
-  const [secondColumn, setSecondColumn] = useState(null);
 
   // set DOM object references for script access
   useEffect(() => {
     setComparison(comparisonRef.current);
-    setFirstColumn(firstColumnRef.current);
-    setSecondColumn(secondColumnRef.current);
+    setFirstColumnVal(firstColumnRef.current.selectedIndex);
+    setSecondColumnVal(secondColumnRef.current.selectedIndex + 1);
   }, [comparisonRef]);
 
-  // Sticky Header: monitor scroll
+  // activate mobile column switching
   useEffect(() => {
-    if (comparison && comparison.dataset.columns && !comparison.classList.contains('hydrated')) {
-      const scroller = [].slice.call(document.querySelectorAll('#root, main'));
+    if (comparison && parseInt(comparison.dataset.columns, 10) > 1 && !comparison.classList.contains('hydrated')) {
       comparison.classList.add('hydrated');
-
-      if (stickyHeader) {
-        scroller.forEach((el) => el.addEventListener('scroll', sticky, passiveEvent));
-      }
-
-      return () => {
-        if (stickyHeader) {
-          scroller.forEach((el) => el.removeEventListener('scroll', sticky, passiveEvent));
-        }
-      };
+      mobileColumns();
     };
   });
 
@@ -66,25 +54,27 @@ function Comparison({
 
   const columnSize = (columns === 4) ? 'col-3' : ((columns === 3) ? 'col-4' : ((columns === 2) ? 'col-6' : 'col-12'));
 
-  // Toggle: sticky header
-  const sticky = throttle(() => {
-    var rect = comparison.getBoundingClientRect();
-    comparison.classList[(rect.top < 24 && 85 < rect.bottom) ? 'add' : 'remove']('table-sticky');
-  }, 50);
-
   // Swap Column: visibility on mobile
   const mobileColumns = (event) => {
-    const isFirst = (event.target === firstColumn);
-    if (firstColumn.selectedIndex > secondColumn.selectedIndex) {
-      (isFirst ? secondColumn : firstColumn).selectedIndex = isFirst ? firstColumn.selectedIndex : secondColumn.selectedIndex;
+    const isFirst = (!event || event.target.getAttribute('name') === 'first-column');
+    let firstVal = firstColumnVal;
+    let secondVal = secondColumnVal;
+    console.log(firstVal, secondVal);
+    if (isFirst) {
+      firstVal = event ? event.target.selectedIndex : 0;
+    } else {
+      secondVal = event.target.selectedIndex + 1;
     }
-    [].slice.call(comparison.querySelectorAll('[data-index]')).forEach((item) => {
-      const index = item.dataset.index;
-      item.classList[(
-        index === firstColumn.options[firstColumn.selectedIndex].value ||
-        index === secondColumn.options[secondColumn.selectedIndex].value
-      ) ? 'remove' : 'add']('table-hide');
-    });
+    if (firstVal >= secondVal) {
+      if (isFirst) {
+        secondVal = firstVal + 1;
+      } else {
+        firstVal = secondVal - 1;
+      }
+    }
+    console.log(firstVal, secondVal);
+    setFirstColumnVal(firstVal);
+    setSecondColumnVal(secondVal);
   };
 
   // SVG: insert arrow SVG for custom form select
@@ -110,7 +100,7 @@ function Comparison({
       aria-labelledby="comparison-mobile-title"
     >
       <div className="row">
-        <div className="table-option col-6">
+        <div className="table-option col-6 pt-2">
           <div className="table-category">
             {(columns < 3) && (
               <p
@@ -125,6 +115,7 @@ function Comparison({
                   name="first-column"
                   aria-label="first column"
                   className="form-control"
+                  value={firstColumnVal}
                   onChange={mobileColumns}
                 >
                   {categories.map((category, index) => (index < columns - 1) && (
@@ -140,7 +131,7 @@ function Comparison({
             )}
           </div>
         </div>
-        <div className="table-option col-6">
+        <div className="table-option col-6 pt-2">
           <div className="table-category">
             {(columns < 3) && (
               <p
@@ -155,6 +146,7 @@ function Comparison({
                   name="second-column"
                   aria-label="second column"
                   className="form-control"
+                  value={secondColumnVal}
                   onChange={mobileColumns}
                 >
                   {categories.map((category, index) => (index > 0) && (
@@ -225,7 +217,7 @@ function Comparison({
                 key={`comparison-${comparisonSeed}-${idx}`}
                 className={classNames({
                   'table-option flex-even': true,
-                  'table-hide': (firstColumn && !(idx.toString() === firstColumn.value || idx.toString() === secondColumn.value)) || (!firstColumn && idx > 1),
+                  'table-hide': idx !== firstColumnVal && idx !== secondColumnVal,
                 })}
                 data-index={idx}
               >
@@ -255,7 +247,7 @@ function Comparison({
     <div
       className={classNames({
         'table-option flex-even': true,
-        'table-hide': (firstColumn && !(index.toString() === firstColumn.value || index.toString() === secondColumn.value)) || (!firstColumn && index > 1),
+        'table-hide': index !== firstColumnVal && index !== secondColumnVal,
       })}
       data-index={index}
       aria-label={`for ${htmlToText(category.name)}`}
@@ -276,7 +268,7 @@ function Comparison({
     <div
       className={classNames({
         'table-option flex-even': true,
-        'table-hide': (firstColumn && !(index.toString() === firstColumn.value || index.toString() === secondColumn.value)) || (!firstColumn && index > 1),
+        'table-hide': index !== firstColumnVal && index !== secondColumnVal,
       })}
       data-index={index}
     >
@@ -307,9 +299,11 @@ function Comparison({
   return (
     <div
       ref={comparisonRef}
-      className="comparison"
+      className={classNames({
+        'comparison': true,
+        'sticky': stickyHeader,
+      })}
       data-columns={columns}
-      data-sticky={stickyHeader ? 1 : 0}
     >
       <Header />
       <Body />
