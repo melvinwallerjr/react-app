@@ -28,8 +28,8 @@ function App() {
       <main>
         <Routes>
           <Route path={process.env.PUBLIC_URL} exact element={<HomePage />} />
-          <Route path={`${process.env.PUBLIC_URL}accordion`} element={<AccordionPage />} />
-          <Route path={`${process.env.PUBLIC_URL}comparison`} element={<ComparisonPage />} />
+          <Route path={`${process.env.PUBLIC_URL}/accordion`} element={<AccordionPage />} />
+          <Route path={`${process.env.PUBLIC_URL}/comparison`} element={<ComparisonPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
