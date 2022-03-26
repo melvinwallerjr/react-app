@@ -3,6 +3,13 @@ import './breadcrumb.scss';
 
 let breadcrumbSeed = 0;
 
+/**
+ * Breadcrumb:
+ * Builds a Bootstrap styled breadcrumb list of links.
+ * 
+ * @param {*} param0
+ * @returns HTML result
+ */
 function Breadcrumb({list = []}) {
   if (list.length < 1) {
     return null;

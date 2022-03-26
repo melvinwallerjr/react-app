@@ -4,11 +4,20 @@ import './comparison.scss';
 import {GetLink} from '../';
 import {
   classNames,
-  htmlToText,
+  plainText,
 } from '../../utility';
 
 let comparisonSeed = 0;
 
+/**
+ * Comparison:
+ * Builds a custom styled compnent while using Bootstrap classes for
+ * comparing features between products.
+ * Special attention is added for comparing items with mobile devices.
+ *
+ * @param {*} param0
+ * @returns HTML result
+ */
 function Comparison({
   stickyHeader = false,
   categories = [],
@@ -123,7 +132,7 @@ function Comparison({
                       key={`comparison-${comparisonSeed}-first-${index}`}
                       value={index}
                       defaultValue={index === 0}
-                    >{htmlToText(category.name)}</option>
+                    >{plainText(category.name)}</option>
                   ))}
                 </select>
                 <SvgArrow />
@@ -154,7 +163,7 @@ function Comparison({
                       key={`comparison-${comparisonSeed}-first-${index}`}
                       value={index}
                       defaultValue={index === 1}
-                    >{htmlToText(category.name)}</option>
+                    >{plainText(category.name)}</option>
                   ))}
                 </select>
                 <SvgArrow />
@@ -222,7 +231,7 @@ function Comparison({
                 data-index={idx}
               >
                 {(categories[idx]) && (
-                  <div className="h-100 pt-3 pt-md-4 pb-4 pb-md-9" aria-label={`item ${index + 1} for ${htmlToText(categories[idx].name)}`}>
+                  <div className="h-100 pt-3 pt-md-4 pb-4 pb-md-9" aria-label={`item ${index + 1} for ${plainText(categories[idx].name)}`}>
                     {(row.categories[idx].image) && (
                       <img src={row.categories[idx].image} width="36" height="36" alt="" className="mb-2" />
                     )}
@@ -250,13 +259,13 @@ function Comparison({
         'table-hide': index !== firstColumnVal && index !== secondColumnVal,
       })}
       data-index={index}
-      aria-label={`for ${htmlToText(category.name)}`}
+      aria-label={`for ${plainText(category.name)}`}
     >
       <div className="pt-3 pt-md-4">
         {(category.btnText && category.btnLink) && (
           <GetLink
             href={category.btnLink}
-            aria-label={`${htmlToText(category.btnText)} for ${htmlToText(category.name)}`}
+            aria-label={`${plainText(category.btnText)} for ${plainText(category.name)}`}
             className={`btn btn-primary ${category.btnClasses}`}
             tracking={category.btnTracking}
             html={category.btnText}

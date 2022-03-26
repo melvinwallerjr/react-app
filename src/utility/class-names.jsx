@@ -1,4 +1,14 @@
-// return trimmed string of class names from object, array, other
+/**
+ * classNames:
+ * Processes data to obtain a string of class names.
+ * Allows for the use of conditional statements to apply classes.
+ * Accepts an object or array for application of conditional statements.
+ * Will convert other types, like numbers and variables, to strings.
+ * Returns a string of the resulting class names.
+ *
+ * @param {*} classes
+ * @returns
+ */
 function classNames(classes) {
   let list = '';
   if (classes.constructor.name.toLowerCase() === 'object') {

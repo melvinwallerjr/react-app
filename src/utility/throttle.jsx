@@ -1,3 +1,11 @@
+/**
+ * throttle:
+ * Limits the frequency in which a function will be executed.
+ *
+ * @param {*} func - callback
+ * @param {number} delay - in miliseconds
+ * @returns
+ */
 function throttle(func, delay) {
   let last = 0;
   delay = (delay || 200);

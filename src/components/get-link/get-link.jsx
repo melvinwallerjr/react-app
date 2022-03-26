@@ -7,7 +7,7 @@ import {Link, NavLink} from 'react-router-dom';
  * <NavLink /> requires the url 'path' to determine the 'active' link
  *
  * @param {*} props
- * @returns
+ * @returns HTML result
  */
 function GetLink(props) {
   const link = {...props}; // no not mutate source data
@@ -60,9 +60,9 @@ function GetLink(props) {
   if (anchorType === 'a') { // Anchor
     return <a {...link}>{link.children}</a>;
   } else if (anchorType === 'nav') { // NavLink
-    return <NavLink {...link}>{link.children}</NavLink>
+    return <NavLink {...link} />
   }
-  return <Link {...link}>{link.children}</Link>; // Link
+  return <Link {...link} />; // Link
 }
 
 export default GetLink;

@@ -1,3 +1,11 @@
+/**
+ * passiveEvent:
+ * Checks browser support for passive event assignment while
+ * defining event listeners.
+ * Returns the proper browser assignment for a passive event.
+ *
+ * @returns passive event definition
+ */
 function passiveEvent() {
   let passive = false;
   try {

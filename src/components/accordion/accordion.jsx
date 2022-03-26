@@ -2,6 +2,13 @@ import './accordion.scss';
 
 let accordionSeed = 0;
 
+/**
+ * Accordion:
+ * Builds a Bootstrap styled accordion component.
+ *
+ * @param {*} param0
+ * @returns HTML result
+ */
 const Accordion = ({
   headingIndex = 2,
   headingSize = '',

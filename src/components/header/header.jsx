@@ -2,6 +2,13 @@ import {GetLink} from '../';
 import logo from '../../assets/logo.svg';
 import './header.scss';
 
+/**
+ * Header
+ * Generates a site header while applying Bootstrap classes.
+ *
+ * @param {*} param0
+ * @returns HTML result
+ */
 function Header({title, list, path}) {
   // toggle site menu on mobile
   function toggleMenu(event) {

@@ -1,5 +1,11 @@
 import './footer.scss';
 
+/**
+ * Footer:
+ * Generates a site footer while applying Bootstrap classes.
+ *
+ * @returns HTML result
+ */
 function Footer() {
   return (
     <footer className="site-footer" aria-label="site footer">
