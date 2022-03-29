@@ -81,19 +81,19 @@
     }
 
     &.sticky {
-      padding-top: 65px;
-
       .table-header {
         position: sticky;
         z-index: $zindex-sticky;
         left: 0;
         right: 0;
+        // adjustment for <main> top padding
         top: -1em;
         background-color: $body-color;
       }
 
+      // adjustment for <main> top padding
       .table-sm {
-        padding-top: 12px;
+        padding-top: 1em;
       }
 
       .table-sm .table-category {
@@ -153,6 +153,7 @@
 }
 
 @media (max-width: 767px) {
+
   // override: smaller button on mobile
   .comparison .table-option .btn {
     border-width: 2px;

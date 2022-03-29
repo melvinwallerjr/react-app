@@ -59,7 +59,9 @@
         }
       }
 
+      // ensure menu is accessible, allow scroll
       ol {
+        overflow: auto;
         max-height: calc(100vh - 48px);
       }
     }
@@ -70,7 +72,7 @@
     max-height: 0;
     overflow: hidden;
     background-color: $header-body;
-    transition: max-height 0.3s ease-in-out;
+    transition: max-height 0s linear;
   }
 
   ol,
@@ -97,6 +99,7 @@
   }
 
   .burger {
+    z-index: 1;
     display: block;
     margin-left: auto;
     width: 46px;
@@ -123,7 +126,7 @@
         background-color: $body-color;
         transform-origin: 50% 50%;
         transform: translate(0, -50%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0s linear;
       }
     }
   }
@@ -132,6 +135,7 @@
 // layout switch breakpoint, width only
 @media (min-width: 480px) {
   .site-header {
+
     nav,
     li,
     li a {
@@ -160,8 +164,22 @@
   }
 }
 
+// enable animation when permitted
 @media (prefers-reduced-motion: no-preference) {
-  .site-header img {
-    animation: logo-spin infinite 20s linear;
+  .site-header {
+    img {
+      animation: logo-spin infinite 20s linear;
+    }
+
+    nav {
+      ol {
+        transition: max-height 0.5s ease-in-out;
+      }
+
+      .burger span::before,
+      .burger span::after {
+        transition: transform 0.3s ease-in-out;
+      }
+    }
   }
 }

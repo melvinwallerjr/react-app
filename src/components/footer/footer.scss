@@ -10,9 +10,31 @@
   background-color: $header-body;
   color: $text-inverse;
 
-  > * {
+  ol {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    background-color: $header-body;
+    transition: max-height 0s linear;
+  }
+
+  ol,
+  li {
     margin: 0;
-    padding: 0 0.5em;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li a {
+    display: block;
+    align-items: center;
+    padding: 0.5em 1em;
+    color: $header-link;
+
+    &:focus,
+    &:hover {
+      color: $header-hover;
+    }
   }
 
   a {

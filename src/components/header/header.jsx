@@ -16,18 +16,6 @@ function Header({title, list, path}) {
     event.target.parentElement.classList.toggle('active');
   }
 
-  // return external link
-  // const ExternalLink = (item) => {
-  //   const link = {...item};
-  //   const html = link.text;
-  //   delete link.text;
-  //   link.target = '_blank';
-  //   link.rel = 'noopener noreferrer';
-  //   return <a {...link}
-  //     dangerouslySetInnerHTML={{__html: html}}
-  //   />;
-  // };
-
   return (
     <header
       id="site-header"
@@ -48,10 +36,9 @@ function Header({title, list, path}) {
         <ol className="site-links">
           {list.map((item, index) => (item.text) && (
             <li key={`nav-${index}`}>
-              {(!item.href) && ( // not linked
+              {(!item.href) ? ( // not linked
                 <span dangerouslySetInnerHTML={{__html: item.text}} />
-              )}
-              {(item.href) && <GetLink {...item} path={path} />}
+              ) : <GetLink {...item} path={path} />}
             </li>
           ))}
         </ol>

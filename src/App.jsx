@@ -11,6 +11,7 @@ import ErrorPage from './pages/error-page';
 
 import {Footer, Header} from './components'
 import headerData from './data/header-sample.json';
+import footerData from './data/footer-sample.json';
 import './App.scss';
 
 /**
@@ -33,7 +34,7 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
-      <Footer />
+      <Footer {...footerData} path={path} />
     </Router>
   );
 }
