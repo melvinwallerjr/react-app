@@ -1,4 +1,6 @@
-import {Breadcrumb, Comparison, Heading} from '../components';
+import React from 'react';
+
+import { Breadcrumb, Comparison, Heading } from '../components';
 
 // temporary sample data
 import comparisonData from '../data/comparison-sample.json';
@@ -17,7 +19,7 @@ function ComparisonPage() {
         // tracking: '',
       },
     ],
-  }
+  };
 
   return (
     <>

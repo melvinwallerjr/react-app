@@ -1,4 +1,6 @@
-import {Breadcrumb, GetLink, Heading} from '../components';
+import React from 'react';
+
+import { Breadcrumb, GetLink, Heading } from '../components';
 
 function HomePage() {
   const breadcrumbList = [
@@ -11,7 +13,7 @@ function HomePage() {
 
   const breadcrumb = {
     list: breadcrumbList,
-  }
+  };
 
   return (
     <>

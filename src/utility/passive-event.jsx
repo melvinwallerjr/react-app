@@ -9,16 +9,16 @@
 function passiveEvent() {
   let passive = false;
   try {
-      const tmp = Object.defineProperty({}, 'passive', {
-          get: function() {
-              passive = { passive: true };
-              return false;
-          }
-      });
-      window.addEventListener('error', function() {}, tmp);
-      window.removeEventListener('error', function() {}, tmp);
+    const tmp = Object.defineProperty({}, 'passive', {
+      get: () => {
+        passive = { passive: true };
+        return false;
+      },
+    });
+    window.addEventListener('error', () => {}, tmp);
+    window.removeEventListener('error', () => {}, tmp);
   } catch (error) {
-      passive = false;
+    passive = false;
   }
   return passive;
 }

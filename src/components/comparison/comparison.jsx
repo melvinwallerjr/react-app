@@ -1,7 +1,7 @@
-import {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import './comparison.scss';
-import {GetLink} from '../';
+import GetLink from '../get-link/get-link';
 import {
   classNames,
   plainText,
@@ -15,14 +15,15 @@ let comparisonSeed = 0;
  * comparing features between products.
  * Special attention is added for comparing items with mobile devices.
  *
- * @param {*} param0
+ * @param {*} params
  * @returns HTML result
  */
-function Comparison({
-  stickyHeader = false,
-  categories = [],
-  rows = [],
-}) {
+function Comparison(params) {
+  const {
+    stickyHeader = false,
+    categories = [],
+    rows = [],
+  } = params;
   // DOM references
   const comparisonRef = useRef(null);
   const firstColumnRef = useRef(null);
@@ -40,12 +41,36 @@ function Comparison({
     setSecondColumnVal(secondColumnRef.current.selectedIndex + 1);
   }, [comparisonRef]);
 
+  // Swap Column: visibility on mobile
+  const mobileColumns = (event) => {
+    const isFirst = (!event || event.target.getAttribute('name') === 'first-column');
+    let firstVal = firstColumnVal;
+    let secondVal = secondColumnVal;
+
+    if (isFirst) {
+      firstVal = event ? event.target.selectedIndex : 0;
+    } else {
+      secondVal = event.target.selectedIndex + 1;
+    }
+
+    if (firstVal >= secondVal) {
+      if (isFirst) {
+        secondVal = firstVal + 1;
+      } else {
+        firstVal = secondVal - 1;
+      }
+    }
+
+    setFirstColumnVal(firstVal);
+    setSecondColumnVal(secondVal);
+  };
+
   // activate mobile column switching
   useEffect(() => {
     if (comparison && parseInt(comparison.dataset.columns, 10) > 1 && !comparison.classList.contains('hydrated')) {
       comparison.classList.add('hydrated');
       mobileColumns();
-    };
+    }
   });
 
   // Data: no columns
@@ -61,30 +86,10 @@ function Comparison({
   let columns = categories.length;
   columns = (columns.length > maxColumns) ? maxColumns : columns;
 
-  const columnSize = (columns === 4) ? 'col-3' : ((columns === 3) ? 'col-4' : ((columns === 2) ? 'col-6' : 'col-12'));
-
-  // Swap Column: visibility on mobile
-  const mobileColumns = (event) => {
-    const isFirst = (!event || event.target.getAttribute('name') === 'first-column');
-    let firstVal = firstColumnVal;
-    let secondVal = secondColumnVal;
-    console.log(firstVal, secondVal);
-    if (isFirst) {
-      firstVal = event ? event.target.selectedIndex : 0;
-    } else {
-      secondVal = event.target.selectedIndex + 1;
-    }
-    if (firstVal >= secondVal) {
-      if (isFirst) {
-        secondVal = firstVal + 1;
-      } else {
-        firstVal = secondVal - 1;
-      }
-    }
-    console.log(firstVal, secondVal);
-    setFirstColumnVal(firstVal);
-    setSecondColumnVal(secondVal);
-  };
+  let columnSize = 'col-12';
+  if (columns === 4) columnSize = 'col-3';
+  else if (columns === 3) columnSize = 'col-4';
+  else if (columns === 2) columnSize = 'col-6';
 
   // SVG: insert arrow SVG for custom form select
   const SvgArrow = () => (
@@ -115,7 +120,7 @@ function Comparison({
               <p
                 className="d-block m-0"
                 title={categories[0].name}
-                dangerouslySetInnerHTML={{__html: categories[0].name}} />
+                dangerouslySetInnerHTML={{ __html: categories[0].name }} />
             )}
             {(columns > 2) && (
               <p className="form form-select py-0">
@@ -184,7 +189,7 @@ function Comparison({
         <div className="row">
           <div className={classNames({
             'd-flex flex-row col-12 p-0': true,
-            'col-lg-10 offset-lg-1' : (columns < 3),
+            'col-lg-10 offset-lg-1': (columns < 3),
           })}>
             {Array(columns).fill('x').map((x, index) => (categories[index]) && (
               <div
@@ -192,11 +197,11 @@ function Comparison({
                 className={classNames({
                   'table-option': true,
                   [columnSize]: true,
-                  'table-hide' : (index > 1),
+                  'table-hide': (index > 1),
                 })}
               >
                 <div className="table-category">
-                  <p className="d-block m-0" title={categories[index].name} dangerouslySetInnerHTML={{__html: categories[index].name}} />
+                  <p className="d-block m-0" title={categories[index].name} dangerouslySetInnerHTML={{ __html: categories[index].name }} />
                 </div>
               </div>
             ))}
@@ -213,7 +218,7 @@ function Comparison({
         <div
           key={`comparison-row-${comparisonSeed}-${index}`}
           className={classNames({
-            'row': true,
+            row: true,
             [row.rowClass]: !!row.rowClass,
           })}
         >
@@ -252,37 +257,48 @@ function Comparison({
   );
 
   // Action: column footer action items
-  const Action = ({category, index}) => (category) ? (
-    <div
-      className={classNames({
-        'table-option flex-even': true,
-        'table-hide': index !== firstColumnVal && index !== secondColumnVal,
-      })}
-      data-index={index}
-      aria-label={`for ${plainText(category.name)}`}
-    >
-      <div className="pt-3 pt-md-4">
-        {(category.btnText && category.btnLink) && (
-          <GetLink
-            href={category.btnLink}
-            aria-label={`${plainText(category.btnText)} for ${plainText(category.name)}`}
-            className={`btn btn-primary ${category.btnClasses}`}
-            tracking={category.btnTracking}
-            html={category.btnText}
-          />
-        )}
+  /**
+   *
+   * @param {*} actionParams
+   * @returns HTML result
+   */
+  const Action = (actionParams) => {
+    const { category, index } = actionParams;
+    if (category) {
+      return (
+        <div
+          className={classNames({
+            'table-option flex-even': true,
+            'table-hide': index !== firstColumnVal && index !== secondColumnVal,
+          })}
+          data-index={index}
+          aria-label={`for ${plainText(category.name)}`}
+        >
+          <div className="pt-3 pt-md-4">
+            {(category.btnText && category.btnLink) && (
+              <GetLink
+                href={category.btnLink}
+                aria-label={`${plainText(category.btnText)} for ${plainText(category.name)}`}
+                className={`btn btn-primary ${category.btnClasses}`}
+                tracking={category.btnTracking}
+                html={category.btnText}
+              />
+            )}
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div
+        className={classNames({
+          'table-option flex-even': true,
+          'table-hide': index !== firstColumnVal && index !== secondColumnVal,
+        })}
+        data-index={index}
+      >
       </div>
-    </div>
-  ) : (
-    <div
-      className={classNames({
-        'table-option flex-even': true,
-        'table-hide': index !== firstColumnVal && index !== secondColumnVal,
-      })}
-      data-index={index}
-    >
-    </div>
-  );
+    );
+  };
 
   // Footer: column action
   const Footer = () => (
@@ -291,13 +307,13 @@ function Comparison({
         <div
           className={classNames({
             'd-flex flex-row col-12 p-0': true,
-            'col-lg-10 offset-lg-1' : (columns < 3),
+            'col-lg-10 offset-lg-1': (columns < 3),
           })}
         >
           {Array(columns).fill('x').map((x, index) => (
             <Action
               key={`comparison-${comparisonSeed}-${index}`}
-              {...{category: categories[index], index}}
+              {...{ category: categories[index], index }}
             />
           ))}
         </div>
@@ -309,8 +325,8 @@ function Comparison({
     <div
       ref={comparisonRef}
       className={classNames({
-        'comparison': true,
-        'sticky': stickyHeader,
+        comparison: true,
+        sticky: stickyHeader,
       })}
       data-columns={columns}
     >

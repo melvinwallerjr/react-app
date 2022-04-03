@@ -6,17 +6,16 @@
  * @param {number} delay - in miliseconds
  * @returns
  */
-function throttle(func, delay) {
+function throttle(func, delay = 200) {
   let last = 0;
-  delay = (delay || 200);
   return (...args) => {
     const now = (new Date()).getTime();
     if (now - last < delay) {
       return;
     }
     last = now;
-    return func(...args);
-  }
+    func(...args);
+  };
 }
 
 export default throttle;

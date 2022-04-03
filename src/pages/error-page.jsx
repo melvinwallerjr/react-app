@@ -1,4 +1,6 @@
-import {Breadcrumb, Heading} from '../components';
+import React from 'react';
+
+import { Breadcrumb, Heading } from '../components';
 
 function ErrorPage() {
   const breadcrumb = {
@@ -9,7 +11,7 @@ function ErrorPage() {
         // tracking: '',
       },
     ],
-  }
+  };
 
   return (
     <>

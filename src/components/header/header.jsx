@@ -1,4 +1,6 @@
-import {GetLink} from '../';
+import React from 'react';
+
+import GetLink from '../get-link/get-link';
 import logo from '../../assets/logo.svg';
 import './header.scss';
 
@@ -6,10 +8,11 @@ import './header.scss';
  * Header
  * Generates a site header while applying Bootstrap classes.
  *
- * @param {*} param0
+ * @param {*} params
  * @returns HTML result
  */
-function Header({title, list, path}) {
+function Header(params) {
+  const { title, list, path } = params;
   // toggle site menu on mobile
   function toggleMenu(event) {
     event.preventDefault();
@@ -37,7 +40,7 @@ function Header({title, list, path}) {
           {list.map((item, index) => (item.text) && (
             <li key={`nav-${index}`}>
               {(!item.href) ? ( // not linked
-                <span dangerouslySetInnerHTML={{__html: item.text}} />
+                <span dangerouslySetInnerHTML={{ __html: item.text }} />
               ) : <GetLink {...item} path={path} />}
             </li>
           ))}

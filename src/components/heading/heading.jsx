@@ -1,21 +1,23 @@
-import {classNames} from '../../utility';
+import React from 'react';
+
+import { classNames } from '../../utility';
 import './heading.scss';
 
 /**
  * Heading:
  * Builds the requested HTML heading at the specified index level.
  *
- * @param {*} param0
+ * @param {*} params
  * @returns
  */
-function Heading({
-  level = 2,
-  classes = '',
-  html,
-  text,
-  children,
-}) {
-
+function Heading(params) {
+  const {
+    level = 2,
+    classes = '',
+    html,
+    text,
+    children,
+  } = params;
   if (!children) {
     return null;
   }
@@ -29,18 +31,18 @@ function Heading({
     return (
       <Tag
         className={classNames({
-          'heading': !classes,
-          [classes]: !!classes
+          heading: !classes,
+          [classes]: !!classes,
         })}
-        dangerouslySetInnerHTML={{__html: html || text}}
+        dangerouslySetInnerHTML={{ __html: html || text }}
       />
     );
   }
   return (
     <Tag
       className={classNames({
-        'heading': !classes,
-        [classes]: !!classes
+        heading: !classes,
+        [classes]: !!classes,
       })}
     >{children}</Tag>
   );

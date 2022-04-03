@@ -1,15 +1,16 @@
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import HomePage from './pages/home-page';
 import AccordionPage from './pages/accordion-page';
 import ComparisonPage from './pages/comparison-page';
 import ErrorPage from './pages/error-page';
 
-import {Footer, Header} from './components'
+import { Footer, Header } from './components';
 import headerData from './data/header-sample.json';
 import footerData from './data/footer-sample.json';
 import './App.scss';

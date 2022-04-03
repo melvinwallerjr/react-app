@@ -1,4 +1,4 @@
-import {Link, NavLink} from 'react-router-dom';
+import React, { Link, NavLink } from 'react-router-dom';
 
 /**
  * GetLink: adjust attributes to match JSX requirements
@@ -6,11 +6,11 @@ import {Link, NavLink} from 'react-router-dom';
  * Generate link using: <NavLink /> or <Link /> of <a></a>
  * <NavLink /> requires the url 'path' to determine the 'active' link
  *
- * @param {*} props
+ * @param {*} params
  * @returns HTML result
  */
-function GetLink(props) {
-  const link = {...props}; // no not mutate source data
+function GetLink(params) {
+  const link = { ...params }; // no not mutate source data
   let anchorType = 'link'; // Types: link:Link, nav:NavLink, a:anchor
 
   // use href from data
@@ -27,8 +27,8 @@ function GetLink(props) {
   // NavLink: requires path, set current link active for home or other
   if (typeof link.path === 'string') {
     anchorType = 'nav';
-    link['aria-current'] = (link.to === '/' && link.path === '/') ||
-      (link.to.length > 1 && link.path.indexOf(link.to) === 0);
+    link['aria-current'] = (link.to === '/' && link.path === '/')
+      || (link.to.length > 1 && link.path.indexOf(link.to) === 0);
     delete link.path;
   }
 
@@ -50,17 +50,18 @@ function GetLink(props) {
 
   // provide for HTML markup inside the link
   if (link.html || link.text) {
-    link.dangerouslySetInnerHTML = {__html: link.html || link.text};
+    link.dangerouslySetInnerHTML = { __html: link.html || link.text };
     delete link.html;
-    delete link.text
+    delete link.text;
     delete link.children;
   }
 
   // return the appropriate link type
   if (anchorType === 'a') { // Anchor
     return <a {...link}>{link.children}</a>;
-  } else if (anchorType === 'nav') { // NavLink
-    return <NavLink {...link} />
+  }
+  if (anchorType === 'nav') { // NavLink
+    return <NavLink {...link} />;
   }
   return <Link {...link} />; // Link
 }

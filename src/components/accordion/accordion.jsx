@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './accordion.scss';
 
 let accordionSeed = 0;
@@ -6,15 +8,17 @@ let accordionSeed = 0;
  * Accordion:
  * Builds a Bootstrap styled accordion component.
  *
- * @param {*} param0
+ * @param {*} params
  * @returns HTML result
  */
-const Accordion = ({
-  headingIndex = 2,
-  headingSize = '',
-  openFirst = false,
-  list = [],
-}) => {
+
+const Accordion = (params) => {
+  const {
+    headingIndex = 2,
+    headingSize = '',
+    openFirst = false,
+    list = [],
+  } = params;
   // accordion list is empty
   if (list.length < 1) {
     return null;
@@ -29,7 +33,7 @@ const Accordion = ({
       id={`accordion${accordionSeed}`}
       className="accordion"
     >
-      {list.map((item, index) => (item.title && item.content) ? ( // for each list item
+      {list.map((item, index) => ((item.title && item.content) ? ( // for each list item
         <li
           key={`accordion${accordionSeed}-c${index}`}
           className="card"
@@ -37,20 +41,21 @@ const Accordion = ({
           <div
             id={`accordion${accordionSeed}-t${index}`}
             className="card-header"
-            dangerouslySetInnerHTML={{__html:
-              `<a
-                href="#accordion${accordionSeed}-c${index}"
-                data-toggle="collapse"
-                role="button"
-                aria-expanded="${!!openFirst && index === 0}"
-                aria-controls="accordion${accordionSeed}-c${index}"
-                ${item.tracking ? `data-tracking="${item.tracking}"` : ''}
-                class="glo-link-plain ${item.customClasses}"
-                ${item.additionalAttributes || ''}
-              >
-                <h${heading} class="${headingSize}">${item.title}</h${heading}>
-                ${(item.subCopy) ? `<p>${item.subCopy}</p>` : ''}
-              </a>`
+            dangerouslySetInnerHTML={{
+              __html:
+                `<a
+                  href="#accordion${accordionSeed}-c${index}"
+                  data-toggle="collapse"
+                  role="button"
+                  aria-expanded="${!!openFirst && index === 0}"
+                  aria-controls="accordion${accordionSeed}-c${index}"
+                  ${item.tracking ? `data-tracking="${item.tracking}"` : ''}
+                  class="glo-link-plain ${item.customClasses}"
+                  ${item.additionalAttributes || ''}
+                >
+                  <h${heading} class="${headingSize}">${item.title}</h${heading}>
+                  ${(item.subCopy) ? `<p>${item.subCopy}</p>` : ''}
+                </a>`,
             }}
           />
           <div
@@ -60,10 +65,10 @@ const Accordion = ({
             data-parent={`#accordion${accordionSeed}`}
             aria-labelledby={`accordion${accordionSeed}-t${index}`}
           >
-            <div className={`card-body pb-5 pb-lg-6 offset-lg-2 col-lg-8' : ''}`}>{item.content}</div>
+            <div className="card-body pb-5 pb-lg-6 offset-lg-2 col-lg-8">{item.content}</div>
           </div>
         </li>
-      ) : null)}
+      ) : null))}
     </ol>
   );
 };

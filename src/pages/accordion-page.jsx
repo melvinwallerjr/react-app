@@ -1,4 +1,6 @@
-import {Accordion, Breadcrumb, Heading} from '../components';
+import React from 'react';
+
+import { Accordion, Breadcrumb, Heading } from '../components';
 
 // temporary sample data
 import accordionData from '../data/accordion-sample.json';
@@ -17,7 +19,7 @@ function AccordionPage() {
         // tracking: '',
       },
     ],
-  }
+  };
 
   return (
     <>

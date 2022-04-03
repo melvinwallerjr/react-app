@@ -12,7 +12,9 @@
 function classNames(classes) {
   let list = '';
   if (classes.constructor.name.toLowerCase() === 'object') {
-    Object.entries(classes).forEach((entry) => list += (entry[1]) ? ` ${entry[0]}` : '');
+    Object.entries(classes).forEach((entry) => {
+      list += (entry[1]) ? ` ${entry[0]}` : '';
+    });
   } else if (classes.constructor.name.toLowerCase() === 'array') {
     list = classes.join(' ');
   } else {
