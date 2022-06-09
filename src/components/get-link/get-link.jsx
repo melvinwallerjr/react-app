@@ -58,7 +58,7 @@ function GetLink(params) {
 
   // return the appropriate link type
   if (anchorType === 'a') { // Anchor
-    return <a {...link}>{link.children}</a>;
+    return <a {...link} />;
   }
   if (anchorType === 'nav') { // NavLink
     return <NavLink {...link} />;
