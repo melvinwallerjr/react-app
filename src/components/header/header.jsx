@@ -13,10 +13,12 @@ import './header.scss';
  */
 function Header(params) {
   const { title, list, path } = params;
+
   // toggle site menu on mobile
   function toggleMenu(event) {
-    event.preventDefault();
-    event.target.parentElement.classList.toggle('active');
+    if (event.target.tagName.toLowerCase() === 'a') {
+      document.querySelector('header nav').classList.toggle('active');
+    }
   }
 
   return (
@@ -41,7 +43,7 @@ function Header(params) {
             <li key={`nav-${index}`}>
               {(!item.href) ? ( // not linked
                 <span dangerouslySetInnerHTML={{ __html: item.text }} />
-              ) : <GetLink {...item} path={path} />}
+              ) : <GetLink {...item} path={path} onClick={toggleMenu} />}
             </li>
           ))}
         </ol>
